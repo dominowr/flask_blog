@@ -1,7 +1,7 @@
 
 # Blog Application
 
-Application is a platform that allows users to register, add comments to posts, and enables content management by administrators. It operates with a division of users into two main roles: admin and regular user.
+Application is a platform that allows users to register, add comments to posts, and enables content management by administrator. It operates with a division of users into two main roles: admin and regular user.
 
 
 ## Features

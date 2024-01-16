@@ -1,0 +1,55 @@
+{% include "header.html" %}
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('https://www.motorcyclespecs.co.za/Gallery/Kawasaki%20ZX7RR%20%202.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>Hesus's Blog</h1>
+            <span class="subheading">A collection of random musings.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        {% for post in all_posts %}
+        <div class="post-preview">
+          <a href="{{ url_for('blogpost.read_post', id=post.id) }}">
+            <h2 class="post-title">
+              {{post.title}}
+            </h2>
+            <h3 class="post-subtitle">
+              {{post.subtitle}}
+            </h3>
+          </a>
+          <p class="post-meta">Posted by
+            <a href="#">{{post.author.name}}</a>
+            on {{post.date}}
+            {% if current_user.has_role("admin") %}
+              <form action="{{ url_for('blogpost.delete_post', id=post.id) }}" method="POST">
+                <button type="submit">✘</button>
+              </form>
+            {% endif %} 
+          </p>
+        </div>
+        <hr>
+        {% endfor %}
+        {% if current_user.has_role("admin") %}
+          <!-- New Post -->
+            <div class="clearfix">
+              <a class="btn btn-primary float-right" href="{{ url_for('blogpost.create_index') }}">Create New Post</a>
+            </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <hr>
+
+{% include "footer.html" %}
